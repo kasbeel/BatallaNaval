@@ -68,10 +68,13 @@ public class MapField {
                 //If obj is a ship eval pos to pos.
                 if (Obj.getClass().getName().equals(Ship.class.getName())) {
                     Point currentPos = element.getPosition();
-                    if (((Ship) element).evalCollision(Obj.getPosition())) {
-                        return element;
+                    //If the ship is PORTRAIT oriented
+                    if (((Ship) Obj).getOrietation() == OrientationType.PORTRAIT) {
+                        if (((Ship) element).evalCollision(Obj.getPosition())) {
+                            return element;
+                        }
                     }
-                }else{ //else if a impact eval only actual pos.
+                } else { //else if a impact eval only actual pos.
                     if (((Ship) element).evalCollision(Obj.getPosition())) {
                         return element;
                     }
