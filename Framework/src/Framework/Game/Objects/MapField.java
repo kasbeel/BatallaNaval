@@ -21,8 +21,8 @@
  * You should have received a copy of the GNU General Public License
  * along with BatallaNaval .  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package Framework.Game.Objects;
+
 /*************************************
  * Internal Import                   *
  *************************************/
@@ -34,37 +34,50 @@ import Framework.Game.Types.OrientationType;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.Point;
+
 /**
  *
  * @author Kasbeel
  */
 public class MapField {
-	private ArrayList<GameObject> mapObjects;
 
-	public MapField(){
+    private ArrayList<GameObject> mapObjects;
 
-	}
+    public MapField() {
+    }
 
-	/**
-	 *
-	 * @param Objs
-	 */
-	public void addObject(GameObject Objs){
+    /**
+     *
+     * @param Objs
+     */
+    public void addObject(GameObject Objs) {
         mapObjects.add(Objs);
-	}
+    }
+
     /**
      *
      * @param Obj
      */
-    public boolean evalCollision(GameObject Obj) {
+    public GameObject evalCollision(GameObject Obj) {
         Iterator<GameObject> itr = mapObjects.iterator();
         while (itr.hasNext()) {
-          GameObject element = itr.next();
-          if(element.getClass().getName().equals(Impact.class.getName())){
-          }
-          if(element.getClass().getName().equals(Ship.class.getName())){
-          }
+            GameObject element = itr.next();
+            if (element.getClass().getName().equals(Impact.class.getName())) {
+            }
+            if (element.getClass().getName().equals(Ship.class.getName())) {
+                //If obj is a ship eval pos to pos.
+                if (Obj.getClass().getName().equals(Ship.class.getName())) {
+                    Point currentPos = element.getPosition();
+                    if (((Ship) element).evalCollision(Obj.getPosition())) {
+                        return element;
+                    }
+                }else{ //else if a impact eval only actual pos.
+                    if (((Ship) element).evalCollision(Obj.getPosition())) {
+                        return element;
+                    }
+                }
+            }
         }
-        return false;
+        return null;
     }
 }
