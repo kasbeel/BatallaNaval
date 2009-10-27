@@ -23,11 +23,53 @@
  */
 
 package Framework.Game.Objects;
+/*************************************
+ * Internal Import                   *
+ *************************************/
+import Framework.Game.Types.ImpactState;
+
+/*************************************
+ * External Import                   *
+ *************************************/
+import java.awt.Point;
 
 /**
  *
  * @author Kasbeel
  */
-public class Impact {
+public class Impact  extends GameObject {
 
+    private ImpactState state;
+
+	public Impact(){
+		super();
+	}
+
+	/**
+	 *
+	 * @param State
+	 * @param Name
+	 * @param Position
+	 */
+	public Impact(ImpactState State, String Name, Point Position){
+		super(Name, Position);
+		this.state = State;
+	}
+
+	/**
+	 * Devuelve el estado en que se encuentra el impacto, SPLASH signica fallido y
+	 * FIRE impacto acertado.
+	 */
+	public ImpactState getState(){
+		return state;
+	}
+
+	/**
+	 * Cambia o setea el estado del impacto, SPLASH es fallido y FIRE acertado.
+	 *
+	 * @param State
+	 */
+	public void setSate(ImpactState State){
+		this.state=State;
+	}
 }

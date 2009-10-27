@@ -23,11 +23,48 @@
  */
 
 package Framework.Game.Objects;
+/*************************************
+ * Internal Import                   *
+ *************************************/
+import Framework.Game.Types.OrientationType;
 
+/*************************************
+ * External Import                   *
+ *************************************/
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.awt.Point;
 /**
  *
  * @author Kasbeel
  */
 public class MapField {
+	private ArrayList<GameObject> mapObjects;
 
+	public MapField(){
+
+	}
+
+	/**
+	 *
+	 * @param Objs
+	 */
+	public void addObject(GameObject Objs){
+        mapObjects.add(Objs);
+	}
+    /**
+     *
+     * @param Obj
+     */
+    public boolean evalCollision(GameObject Obj) {
+        Iterator<GameObject> itr = mapObjects.iterator();
+        while (itr.hasNext()) {
+          GameObject element = itr.next();
+          if(element.getClass().getName().equals(Impact.class.getName())){
+          }
+          if(element.getClass().getName().equals(Ship.class.getName())){
+          }
+        }
+        return false;
+    }
 }

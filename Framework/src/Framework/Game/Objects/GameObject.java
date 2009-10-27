@@ -23,11 +23,52 @@
  */
 
 package Framework.Game.Objects;
-
+import java.awt.Point;
 /**
  *
  * @author Kasbeel
  */
 public class GameObject {
 
+    private String name;
+	private java.awt.Point position;
+
+	public GameObject(){
+		        this.name="";
+		        this.position= new Point(-1,-1);
+	}
+
+	/**
+	 *
+	 * @param name
+	 * @param position
+	 */
+	public GameObject(String name, Point position){
+		        this.name = name;
+		        this.position = position;
+	}
+
+	public String getName(){
+		return name;
+	}
+
+	public Point getPosition(){
+		return position;
+	}
+
+	/**
+	 *
+	 * @param name
+	 */
+	public void setName(String name){
+		this.name = name;
+	}
+
+	/**
+	 *
+	 * @param position 
+	 */
+	public void setPosition(Point position){
+		this.position = position;
+	}
 }
