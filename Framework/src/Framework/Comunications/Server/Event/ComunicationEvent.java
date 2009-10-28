@@ -1,5 +1,5 @@
 /*
- * GameObject.java
+ * ComunicationEvent.java
  * 
  * Copyright (c) 2009 (KTeam).
  * All rights reserved.
@@ -22,57 +22,19 @@
  * along with BatallaNaval .  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package Framework.Game.Objects;
+package Framework.Comunications.Server.Event;
 /*************************************
  * External Import                   *
  *************************************/
-import java.awt.Point;
-import java.io.Serializable;
+import java.util.EventObject;
 /**
  *
  * @author Kasbeel
  */
-public class GameObject implements Serializable {
+public class ComunicationEvent extends EventObject {
 
-    private String name;
-	private java.awt.Point position;
+    public ComunicationEvent(Object source) {
+        super(source);
+    }
 
-	public GameObject(){
-		        this.name="";
-		        this.position= new Point(-1,-1);
-	}
-
-	/**
-	 *
-	 * @param name
-	 * @param position
-	 */
-	public GameObject(String name, Point position){
-		        this.name = name;
-		        this.position = position;
-	}
-
-	public String getName(){
-		return name;
-	}
-
-	public Point getPosition(){
-		return position;
-	}
-
-	/**
-	 *
-	 * @param name
-	 */
-	public void setName(String name){
-		this.name = name;
-	}
-
-	/**
-	 *
-	 * @param position 
-	 */
-	public void setPosition(Point position){
-		this.position = position;
-	}
 }

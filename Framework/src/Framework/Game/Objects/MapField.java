@@ -34,16 +34,19 @@ import Framework.Game.Types.OrientationType;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.awt.Point;
+import java.io.Serializable;
 
 /**
  *
  * @author Kasbeel
  */
-public class MapField {
+public class MapField implements Serializable {
 
     private ArrayList<GameObject> mapObjects;
 
     public MapField() {
+        //Initialize objects container.
+        mapObjects = new ArrayList<GameObject>();
     }
 
     /**
@@ -65,12 +68,20 @@ public class MapField {
             if (element.getClass().getName().equals(Impact.class.getName())) {
             }
             if (element.getClass().getName().equals(Ship.class.getName())) {
-                //If obj is a ship eval pos to pos.
+                //If obj is a ship eval pos by pos to complete the size.
                 if (Obj.getClass().getName().equals(Ship.class.getName())) {
                     Point currentPos = element.getPosition();
-                    //If the ship is PORTRAIT oriented
-                    if (((Ship) Obj).getOrietation() == OrientationType.PORTRAIT) {
-                        if (((Ship) element).evalCollision(Obj.getPosition())) {
+                    for (int pos = 0; pos < ((Ship) Obj).getSize(); pos++) {
+                        //If the ship is PORTRAIT oriented increment x pos
+                        if (((Ship) Obj).getOrietation() == OrientationType.PORTRAIT) {
+                            currentPos.x++;
+                        }
+                        //If the ship is LANDSCAPE oriented increment y pos
+                        if (((Ship) Obj).getOrietation() == OrientationType.LANDSCAPE) {
+                            currentPos.y++;
+                        }
+                        //eval collision in current position if true return object.
+                        if (((Ship) element).evalCollision(currentPos)) {
                             return element;
                         }
                     }

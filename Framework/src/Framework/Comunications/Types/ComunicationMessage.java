@@ -1,5 +1,5 @@
 /*
- * GameObject.java
+ * ComunicationMessage.java
  * 
  * Copyright (c) 2009 (KTeam).
  * All rights reserved.
@@ -22,57 +22,29 @@
  * along with BatallaNaval .  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package Framework.Game.Objects;
+package Framework.Comunications.Types;
 /*************************************
  * External Import                   *
  *************************************/
-import java.awt.Point;
 import java.io.Serializable;
 /**
  *
  * @author Kasbeel
  */
-public class GameObject implements Serializable {
+public class ComunicationMessage implements Serializable {
+    ComunicationMessageType type;
+    Object message;
+    public ComunicationMessage(ComunicationMessageType Type, Object Message){
+        this.type = Type;
+        this.message = Message;
+    }
 
-    private String name;
-	private java.awt.Point position;
+    public Object getMessage() {
+        return message;
+    }
 
-	public GameObject(){
-		        this.name="";
-		        this.position= new Point(-1,-1);
-	}
+    public ComunicationMessageType getType() {
+        return type;
+    }
 
-	/**
-	 *
-	 * @param name
-	 * @param position
-	 */
-	public GameObject(String name, Point position){
-		        this.name = name;
-		        this.position = position;
-	}
-
-	public String getName(){
-		return name;
-	}
-
-	public Point getPosition(){
-		return position;
-	}
-
-	/**
-	 *
-	 * @param name
-	 */
-	public void setName(String name){
-		this.name = name;
-	}
-
-	/**
-	 *
-	 * @param position 
-	 */
-	public void setPosition(Point position){
-		this.position = position;
-	}
 }
